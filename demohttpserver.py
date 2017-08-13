@@ -28,6 +28,9 @@ class MyHandler(BaseHTTPRequestHandler):
             logging.warning('Someone killed the server!!!')
             os._exit(1)
         else:
+            if self.path == '/hi':
+                self.set_headers()
+                self.wfile.write(b'hi)'
             self.set_headers(status=404)
             self.wfile.write(b'404 Not Found')
             logging.debug(self.path + ' isn\'t here')
